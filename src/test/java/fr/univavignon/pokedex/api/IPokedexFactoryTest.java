@@ -1,9 +1,39 @@
 package fr.univavignon.pokedex.api;
 
 import junit.framework.TestCase;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
 
-public class IPokedexFactoryTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
+public class IPokedexFactoryTest  {
+    Pokemon pok;
+    IPokedexFactory pokedexFactory;
+    IPokemonMetadataProvider pokemonMDProvider;
+    IPokemonFactory pokemonFact;
+    IPokedex pdx;
 
 
-    //tester la IPokemonFactory qui  permet de créer un individu.
+    @Before
+    public void start() {
+        pokedexFactory = mock(IPokedexFactory.class);
+        pokemonMDProvider = mock(IPokemonMetadataProvider.class);
+        pokemonFact = mock(IPokemonFactory.class);
+        pdx = mock(IPokedex.class);
+
+    }
+
+    @Test
+    public void creationPokedex() {
+        when(pokedexFactory.createPokedex(pokemonMDProvider, pokemonFact)).thenReturn(pdx);
+        assertEquals(pokedexFactory.createPokedex(pokemonMDProvider, pokemonFact), pdx);
+
+    }
+
+
+
+
+
 }
