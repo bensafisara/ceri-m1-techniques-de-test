@@ -35,14 +35,20 @@ public class IPokedexTest {
           p1 = new Pokemon(0,"Bulbizarre",126,126,90,613,64,4000,4,0.56);
           p2=new Pokemon(133,"Aquali",186,168,260,2729,202,5000,4,1);
         pdexLIST = new ArrayList<Pokemon>();
-        pdexLIST.add(p1);
-        pdexLIST.add(p2);
+
 
     }
+    @Test
+    public void testSize1() {
+        pdexLIST.add(p1);
+        assertEquals(1, pdexLIST.size());
+    }
+
     // ici je doit tester " the Number of pokemon in this pokedex."
     @Test
     public void addPokemonTest() {
-
+        pdexLIST.add(p1);
+        pdexLIST.add(p2);
 
         when(pdx.addPokemon(p1)).thenReturn(p1.getIndex());
         //when(pdx.addPokemon(p1)).thenReturn(0);
@@ -52,9 +58,10 @@ public class IPokedexTest {
     }
 
 
-
     @Test
     public void sizeTest(){
+        pdexLIST.add(p1);
+        pdexLIST.add(p2);
         // i dont have to call addPokemon a chaque fois je doit les mettre dans le beforeEach
         when(pdx.size()).thenReturn(pdexLIST.size());
             assertEquals(pdx.size(), 2);
@@ -66,7 +73,8 @@ public class IPokedexTest {
 
     @Test
     public void getPokemonTest() throws PokedexException {
-
+        pdexLIST.add(p1);
+        pdexLIST.add(p2);
         //le pokemon dont l'index est 0 => bulbizarre
         when(pdx.getPokemon(Mockito.anyInt())).thenReturn(getpokemonFromIndex(0));
         assertEquals(pdexLIST.get(0), getpokemonFromIndex(0));
@@ -79,6 +87,8 @@ public class IPokedexTest {
 
 
     public Pokemon getpokemonFromIndex(int index) throws PokedexException {
+        pdexLIST.add(p1);
+        pdexLIST.add(p2);
         for(int i=0;i<pdexLIST.size();i++) {
             if(pdexLIST.get(i).getIndex() == index) {
                 return pdexLIST.get(i);
@@ -92,6 +102,8 @@ public class IPokedexTest {
 
     @Test
     public void PokemonsSortedTest(){
+        pdexLIST.add(p1);
+        pdexLIST.add(p2);
         PokemonComparators index = PokemonComparators.INDEX;
         when(pdx.getPokemons(index)).thenReturn(pdexLIST);
         List<Pokemon> sortedindex = pdx.getPokemons(index);
@@ -121,6 +133,8 @@ public class IPokedexTest {
 
     @Test
     public void PokemonsList(){
+        pdexLIST.add(p1);
+        pdexLIST.add(p2);
         when(pdx.getPokemons()).thenReturn(pdexLIST);
         List<Pokemon> sorted = pdx.getPokemons();
         assertEquals(sorted,pdexLIST);
