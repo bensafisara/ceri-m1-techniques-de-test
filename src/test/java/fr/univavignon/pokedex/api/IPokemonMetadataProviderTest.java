@@ -25,6 +25,7 @@ public class IPokemonMetadataProviderTest  {
         p2 = new PokemonMetadata(133, "Aquali", 186, 186, 260);
     }
 
+
     @Test
     public void getPokemonMetadata() throws PokedexException {
 

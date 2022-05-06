@@ -16,7 +16,6 @@ public class PokemonFactory implements IPokemonFactory{
         try {
             PokemonMetadata pokemonMetadata = iPokemMetaPro.getPokemonMetadata(index);
             Random rand = new Random();
-
             int attack = rand.nextInt(16);
             int def = rand.nextInt(16);
             int stami = rand.nextInt(16);
