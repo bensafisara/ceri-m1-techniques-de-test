@@ -18,10 +18,7 @@ public class PokemonMetadataProvider implements IPokemonMetadataProvider{
     @Override
     public PokemonMetadata getPokemonMetadata(int index) throws PokedexException {
 
-        if (metadataPokemon.get(index) == null)
-        {
-            throw new PokedexException("Pokemon inéxistant");
-        }
+
         return metadataPokemon.get(index);
 
     }
