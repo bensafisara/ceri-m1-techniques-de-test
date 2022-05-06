@@ -39,10 +39,35 @@ public class IPokedexTest {
 
     }
     @Test
-    public void testSize1() {
+    public void Size1() {
         pdexLIST.add(p1);
         assertEquals(1, pdexLIST.size());
     }
+
+
+
+    @Test
+    public void Size0() {
+        assertEquals(0, pdexLIST.size());
+    }
+
+
+    @Test
+    public void GetPokemonP1() {
+        pdexLIST.add(p1);
+        assertEquals(p1, pdexLIST.get(0));
+    }
+
+    @Test
+    public void GetPokemonP2() {
+
+            pdexLIST.add(p1);
+            pdexLIST.add(p2);
+            assertEquals(p2, pdexLIST.get(1));
+
+    }
+
+
 
     // ici je doit tester " the Number of pokemon in this pokedex."
     @Test
