@@ -8,4 +8,4 @@ Groupe 2 IA-ILSEN
 
 ![Checkstyle](target/site/badges/checkstyle-result.svg)
 
-Ma JavaDoc :  https://bensafisara.github.io/ceri-m1-techniques-de-test/S
+Ma JavaDoc :  https://bensafisara.github.io/ceri-m1-techniques-de-test/
