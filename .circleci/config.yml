@@ -29,7 +29,25 @@ jobs:
           name: Test
           command: mvn test
       - codecov/upload
-
+  generate-doc:
+    docker:
+      - image: node:8.10.0
+    steps:
+      - checkout
+      - attach_workspace:
+          at: target
+      - run:
+          name: Install and configure dependencies
+          command: |
+            npm install -g --silent gh-pages@2.0.1
+            git config user.email "ci-build@klukas.net"
+            git config user.name "ci-build"
+      - add_ssh_keys:
+          fingerprints:
+            - "c9:9f:f8:16:a8:23:8e:b5:94:13:f1:5f:05:ce:bb:8c"
+      - run:
+          name: Deploy docs to gh-pages branch
+          command: gh-pages --dist target/apidocs
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
@@ -37,3 +55,6 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
+      - generate-doc:
+          requires:
+            - build-and-test
