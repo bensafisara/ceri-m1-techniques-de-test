@@ -7,6 +7,8 @@ public class PokemonFactory implements IPokemonFactory{
 
     public PokemonFactory(IPokemonMetadataProvider iPokemMetaPro ){
         this.iPokemMetaPro = iPokemMetaPro;
+
+
     }
 
 
