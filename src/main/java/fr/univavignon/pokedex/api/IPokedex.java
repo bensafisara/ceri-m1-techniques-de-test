@@ -18,7 +18,7 @@ public interface IPokedex extends IPokemonMetadataProvider, IPokemonFactory {
 	int size();
 	
 	/**
-	 * Adds the given <tt>pokemon  to this pokedex and returns
+	 * Adds the given pokemon  to this pokedex and returns
 	 * it unique index.
 	 * 
 	 * @param pokemon Pokemon to add to this pokedex.
