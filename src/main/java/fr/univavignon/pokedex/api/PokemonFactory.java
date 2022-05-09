@@ -23,7 +23,7 @@ public class PokemonFactory implements IPokemonFactory{
             int stami = rand.nextInt(16);
             int iv = (int)((attack + def + stami) * 100 / 45);
 
-            Pokemon pokemon = new Pokemon(index, pokemonMetadata.getName(), pokemonMetadata.getAttack()+attack, pokemonMetadata.getDefense()+def, pokemonMetadata.getStamina()+stami, cp, hp, dust, candy, iv);
+            Pokemon pokemon = new Pokemon(index, pokemonMetadata.getName(), attack, def, stami, cp, hp, dust, candy, iv);
             return pokemon;
         }
         catch (PokedexException e)
