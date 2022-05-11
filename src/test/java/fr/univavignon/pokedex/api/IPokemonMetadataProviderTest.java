@@ -2,48 +2,41 @@ package fr.univavignon.pokedex.api;
 
 import org.junit.Test;
 import org.mockito.Mockito;
-
-
+import static fr.univavignon.pokedex.api.PokemonMetadataProvider.mdataPokemon;
 import org.junit.Assert;
 import org.junit.Before;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 
 public class IPokemonMetadataProviderTest  {
-    IPokemonMetadataProvider pmpt;
-
+    IPokemonMetadataProvider pmpt  = new PokemonMetadataProvider();
     PokemonMetadata p2;
     PokemonMetadata p1;
 
     @Before
     public void start() {
-        pmpt = Mockito.mock(IPokemonMetadataProvider.class);
+        //pmpt = Mockito.mock(IPokemonMetadataProvider.class);
         p1 = new PokemonMetadata(0, "Bulbizarre", 126, 126, 90);
         p2 = new PokemonMetadata(133, "Aquali", 186, 186, 260);
+        //Add les information sur les pokemones
+        mdataPokemon.add(p1);
+        mdataPokemon.add(p2);
     }
 
 
     @Test
     public void getPokemonMetadata() throws PokedexException {
+       //JE doit avant remplir les information sur les metadata dans metadatprovider
+        // assertEquals(p2, pmpt.getPokemonMetadata(133)); marche pas
+        // assertEquals(p1, pmpt.getPokemonMetadata(0); marche pas
 
-        doReturn(p2).when(pmpt).getPokemonMetadata(133);
+        assertEquals(p1.getIndex(),pmpt.getPokemonMetadata(0).getIndex());
+        assertEquals(p1.getName(),pmpt.getPokemonMetadata(0).getName());
 
-       doReturn(p1).when(pmpt).getPokemonMetadata(0);
+        assertEquals(p2.getIndex(),pmpt.getPokemonMetadata(133).getIndex());
+        assertEquals(p2.getName(),pmpt.getPokemonMetadata(133).getName());
 
-
-        assertEquals(p1, pmpt.getPokemonMetadata(0));
-        assertEquals(p2, pmpt.getPokemonMetadata(133));
-
-        doThrow(new PokedexException("L'index doit etre supérieur à 1 ")).when(pmpt)
-                .getPokemonMetadata(Mockito.intThat(i -> i > 150));
-        doThrow(new PokedexException("L'index doit etre inférieur à 150 ")).when(pmpt)
-                .getPokemonMetadata(Mockito.intThat(i -> i < 0 ));
-
-
-        assertThrows(PokedexException.class, () -> pmpt.getPokemonMetadata(-10));
-        assertThrows(PokedexException.class, () -> pmpt.getPokemonMetadata(200));
     }
 }

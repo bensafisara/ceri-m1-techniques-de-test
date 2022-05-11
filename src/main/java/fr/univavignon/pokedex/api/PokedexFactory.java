@@ -1,8 +1,11 @@
 package fr.univavignon.pokedex.api;
 
+
+//PokedexFactory
+
 public class PokedexFactory implements  IPokedexFactory {
     @Override
-    public IPokedex createPokedex(IPokemonMetadataProvider metadataProvider, IPokemonFactory pokemonFactory) {
-        return new Pokedex(pokemonFactory, metadataProvider);
+    public IPokedex createPokedex(IPokemonMetadataProvider metaDataProv, IPokemonFactory pokmFactory) {
+        return new Pokedex(pokmFactory, metaDataProv);
     }
 }

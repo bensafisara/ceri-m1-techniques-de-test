@@ -5,12 +5,22 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Pokedex implements IPokedex{
-    private List<Pokemon> pokemon_List = new ArrayList<Pokemon>();
+
+    //Pokedex
+
+
+
+
+
+
     private IPokemonMetadataProvider pokemonMetaProv;
     private IPokemonFactory pokemFacto;
+    private List<Pokemon> pokemon_List = new ArrayList<Pokemon>();
+
     public Pokedex(IPokemonFactory PokemFacto, IPokemonMetadataProvider PokemonMetaProv) {
-        this.pokemFacto = PokemFacto;
         this.pokemonMetaProv = PokemonMetaProv;
+        this.pokemFacto = PokemFacto;
+
     }
 
     @Override
@@ -29,8 +39,6 @@ public class Pokedex implements IPokedex{
 
         if(id < 0 || id > 150 ) throw new PokedexException("Aucun pokemon avec cette id");
 
-        if(id_retourne==null) throw new PokedexException("Aucun pokemon avec cette id");
-
         return id_retourne;
     }
 
@@ -40,10 +48,10 @@ public class Pokedex implements IPokedex{
     }
 
     @Override
-    public List<Pokemon> getPokemons(Comparator<Pokemon> order) {
+    public List<Pokemon> getPokemons(Comparator<Pokemon> sorted) {
 
         List<Pokemon> lst = pokemon_List;
-        lst.sort(order);
+        lst.sort(sorted);
         return lst;
 
     }
